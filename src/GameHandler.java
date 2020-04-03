@@ -2,10 +2,14 @@ import java.util.HashSet;
 
 public class GameHandler
 {
+    Player player1;
+    Player player2;
     private Block[] blocks;
 
-    public GameHandler ()
+    public GameHandler (Player player1, Player player2)
     {
+        this.player1 = player1;
+        this.player2 = player2;
         blocks = new Block[4];
         makeAllBlocks ();
     }
@@ -18,7 +22,7 @@ public class GameHandler
     }
 
 
-    public boolean act (Coordinate taw, int blockNumber, String dir, Player player1, Player player2)
+    public boolean act (Coordinate taw, int blockNumber, String dir)
     {
         String color;
         if (player1.isTurn ())
@@ -50,7 +54,7 @@ public class GameHandler
         return blocks[taw.getBlockNumber () - 1].chooseTaw (taw,color);
     }
 
-    public int checksForFinish (Player player1, Player player2)
+    public int checksForFinish ()
     {
         HashSet<Coordinate> tawForPlayer1 = new HashSet<> ();
         HashSet<Coordinate> tawForPlayer2 = new HashSet<> ();
@@ -67,6 +71,8 @@ public class GameHandler
                         getColor ().equals (player2.getTawColor ()))
                     tawForPlayer2.add (taw);
             }
+        player1.setPoints (tawForPlayer1.size ());
+        player2.setPoints (tawForPlayer2.size ());
         boolean resultForPlayer1 = checkForDistance (tawForPlayer1);
         boolean resultForPlayer2 = checkForDistance (tawForPlayer2);
 
@@ -117,4 +123,5 @@ public class GameHandler
             System.out.println ();
         }
     }
+
 }

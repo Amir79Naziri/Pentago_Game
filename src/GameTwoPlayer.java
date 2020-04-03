@@ -7,6 +7,11 @@ public class GameTwoPlayer extends Game
         super();
     }
 
+    public void play ()
+    {
+
+    }
+
 
 
 }

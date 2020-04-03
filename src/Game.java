@@ -1,4 +1,4 @@
-public class Game
+public abstract class Game
 {
     Player player1;
     Player player2;
@@ -9,7 +9,7 @@ public class Game
     {
         player1 = new Player ();
         player2 = new Player ();
-        gameHandler = new GameHandler ();
+        gameHandler = new GameHandler (player1,player2);
     }
 
     public Player getPlayer1 () {
@@ -31,9 +31,26 @@ public class Game
         randomGame.startRandomGame (player1, player2);
     }
 
-    public void stopPlay ()
+    public boolean stopPlay ()
     {
+        int result = gameHandler.checksForFinish ();
+        switch (result)
+        {
+            case 0 : return false;
+            case 1 :
+                System.out.println ("Player1 won");
+                return true;
+            case 2 :
+                System.out.println ("Player2 won");
+                return true;
+            case 3 :
+                System.out.println ("Draw");
+                return true;
+        }
 
+        if (player1.getPoints () + player2.getPoints () == 36)
+            System.out.println ("Draw");
+        return true;
     }
 
     protected void changeTurn ()
@@ -50,4 +67,5 @@ public class Game
         }
     }
 
+    abstract public void play ();
 }
