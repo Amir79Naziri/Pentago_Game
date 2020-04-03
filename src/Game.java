@@ -9,6 +9,7 @@ public abstract class Game
     {
         player1 = new Player ();
         player2 = new Player ();
+        startPlay ();
         gameHandler = new GameHandler (player1,player2);
     }
 
@@ -25,7 +26,7 @@ public abstract class Game
     }
 
 
-    public void startPlay ()
+    private void startPlay ()
     {
         RandomGame randomGame = new RandomGame ();
         randomGame.startRandomGame (player1, player2);
