@@ -31,5 +31,23 @@ public class Game
         randomGame.startRandomGame (player1, player2);
     }
 
+    public void stopPlay ()
+    {
+
+    }
+
+    protected void changeTurn ()
+    {
+        if (player1.isTurn ())
+        {
+            player1.doneTurn ();
+            player2.makeTurn ();
+        }
+        else
+        {
+            player2.doneTurn ();
+            player1.makeTurn ();
+        }
+    }
 
 }
