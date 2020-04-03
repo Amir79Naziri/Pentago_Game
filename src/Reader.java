@@ -20,6 +20,40 @@ public class Reader
     }
 
 
+    public Coordinate readFirstLine ()
+    {
+        System.out.println ("Enter Chosen Taw in format : x y");
+        String firstLine = line.nextLine ();
+        Coordinate coordinate = new Coordinate ();
+        if (coordinate.translator (firstLine))
+            return coordinate;
+        else
+            return readFirstLine ();
+    }
+
+    public String readSecLine ()
+    {
+        System.out.println ("Enter Chosen Block and it's direction in format : blockNumber cw/ccw");
+        String secondLine = line.nextLine ();
+        if (validSecLine (secondLine))
+            return secondLine.trim ();
+        else
+            return readSecLine ();
+    }
+
+    private boolean validSecLine (String secondLine)
+    {
+        String[] splits = secondLine.trim ().split (" ");
+        if (splits.length != 3)
+            return false;
+        if (!splits[0].equals ("1") && !splits[0].equals ("2") && !splits[0].equals ("3")&&
+                !splits[0].equals ("4"))
+            return false;
+        if (splits[1].equals (" "))
+            return false;
+        return splits[2].equals ("cw") || splits[2].equals ("ccw");
+    }
+
 
 }
 

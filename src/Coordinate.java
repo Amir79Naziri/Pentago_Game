@@ -99,7 +99,7 @@ public class Coordinate
             char[] parts = command.trim ().toCharArray ();
             if (parts.length != 3)
                 return false;
-            if (parts[0] != '0' &&parts[0] != '1' && parts[0] != '2' && parts[0] != '3'
+            if (parts[0] != '0' && parts[0] != '1' && parts[0] != '2' && parts[0] != '3'
                     && parts[0] != '4' && parts[0] != '5')
                 return false;
             if (parts[1] != ' ')
