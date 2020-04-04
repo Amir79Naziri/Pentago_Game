@@ -13,12 +13,13 @@ public class GameTwoPlayer extends Game
         while (stopPlay ())
         {
             gameHandler.showMap ();
-            Coordinate chosenTaw = reader.readFirstLine ();
+            boolean result = gameHandler.chooseTaw (reader.readFirstLine ());
+            if (!result)
+                continue;
+            gameHandler.showMap ();
             String[] splits = reader.readSecLine ().split (" ");
-            boolean result = gameHandler.act (chosenTaw,
-                    Integer.parseInt (splits[0]),splits[1]);
-            if (result)
-                changeTurn ();
+            gameHandler.rotate (Integer.parseInt (splits[0]),splits[1]);
+            changeTurn ();
         }
     }
 }

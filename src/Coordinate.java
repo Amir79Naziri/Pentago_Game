@@ -58,7 +58,7 @@ public class Coordinate
             return false;
         String[] splits = command.trim ().split (" ");
         int x = Integer.parseInt (splits[0]);
-        int y = Integer.parseInt (splits[2]);
+        int y = Integer.parseInt (splits[1]);
 
         return translator (x,y);
     }

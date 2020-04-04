@@ -44,14 +44,12 @@ public class Reader
     private boolean validSecLine (String secondLine)
     {
         String[] splits = secondLine.trim ().split (" ");
-        if (splits.length != 3)
+        if (splits.length != 2)
             return false;
-        if (!splits[0].equals ("1") && !splits[0].equals ("2") && !splits[0].equals ("3")&&
-                !splits[0].equals ("4"))
+        if (!(splits[0].equals ("1")) && !(splits[0].equals ("2")) && !(splits[0].equals ("3")) &&
+                (!splits[0].equals ("4")))
             return false;
-        if (splits[1].equals (" "))
-            return false;
-        return splits[2].equals ("cw") || splits[2].equals ("ccw");
+        return splits[1].equals ("cw") || splits[1].equals ("ccw");
     }
 
 

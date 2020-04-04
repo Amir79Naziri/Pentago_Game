@@ -37,20 +37,23 @@ public abstract class Game
         int result = gameHandler.checksForFinish ();
         switch (result)
         {
-            case 0 : return false;
+            case 0 : return true;
             case 1 :
                 System.out.println ("Player1 won");
-                return true;
+                return false;
             case 2 :
                 System.out.println ("Player2 won");
-                return true;
+                return false;
             case 3 :
                 System.out.println ("Draw");
-                return true;
+                return false;
         }
 
         if (player1.getPoints () + player2.getPoints () == 36)
+        {
             System.out.println ("Draw");
+            return false;
+        }
         return true;
     }
 
