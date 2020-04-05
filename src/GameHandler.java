@@ -1,8 +1,8 @@
 
 public class GameHandler
 {
-    Player player1;
-    Player player2;
+    private Player player1;
+    private Player player2;
     private Block[] blocks;
 
     public GameHandler (Player player1, Player player2)
@@ -184,24 +184,38 @@ public class GameHandler
         return counter;
     }
 
-    public void showMap ()
+
+
+    public void showMap (boolean showTurn)
     {
-        System.out.println ("\n\n\n");
+        System.out.println ("\n\n\n\n");
         for (int y = 0; y < 6; y++)
         {
             if (y == 3)
-                System.out.println ("------------------------------------");
+                System.out.println ("-----------------------------------------\n");
             for (int x = 0; x < 6; x++)
             {
                 if (x == 3)
-                    System.out.print (" | ");
+                    System.out.print (" |  ");
                 Coordinate taw = new Coordinate ();
                 if (taw.translator (x,y))
-                    blocks[taw.getBlockNumber () - 1].getTaws ()[taw.getY ()][taw.getX ()].printTaw ();
+                    blocks[taw.getBlockNumber () - 1].
+                            getTaws ()[taw.getY ()][taw.getX ()].printTaw ();
+                System.out.print (" ");
             }
-            System.out.println ();
+            System.out.println ("\n");
         }
         System.out.println ("\n");
+        if (showTurn)
+        {
+            if (player1.isTurn ())
+                player1.printPlayerColor ();
+            else
+                player2.printPlayerColor ();
+        }
+        else
+            System.out.println ();
+
     }
 
 }

@@ -31,12 +31,12 @@ public class Reader
             return readFirstLine ();
     }
 
-    public String readSecLine ()
+    public String[] readSecLine ()
     {
         System.out.println ("Enter Chosen Block and it's direction in format : blockNumber cw/ccw");
         String secondLine = line.nextLine ();
         if (validSecLine (secondLine))
-            return secondLine.trim ();
+            return secondLine.trim ().split (" ");
         else
             return readSecLine ();
     }

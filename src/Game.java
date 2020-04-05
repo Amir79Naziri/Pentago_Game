@@ -1,8 +1,8 @@
 public abstract class Game
 {
-    Player player1;
-    Player player2;
-    GameHandler gameHandler;
+    private Player player1;
+    private Player player2;
+    private GameHandler gameHandler;
 
 
     public Game ()
@@ -39,18 +39,22 @@ public abstract class Game
         {
             case 0 : return true;
             case 1 :
+                getGameHandler ().showMap (false);
                 System.out.println ("Player1 won");
                 return false;
             case 2 :
+                getGameHandler ().showMap (false);
                 System.out.println ("Player2 won");
                 return false;
             case 3 :
+                getGameHandler ().showMap (false);
                 System.out.println ("Draw");
                 return false;
         }
 
         if (player1.getPoints () + player2.getPoints () == 36)
         {
+            getGameHandler ().showMap (false);
             System.out.println ("Draw");
             return false;
         }
@@ -59,15 +63,15 @@ public abstract class Game
 
     protected void changeTurn ()
     {
-        if (player1.isTurn ())
+        if (getPlayer1 ().isTurn ())
         {
-            player1.doneTurn ();
-            player2.makeTurn ();
+            getPlayer1 ().doneTurn ();
+            getPlayer2 ().makeTurn ();
         }
         else
         {
-            player2.doneTurn ();
-            player1.makeTurn ();
+            getPlayer2 ().doneTurn ();
+            getPlayer1 ().makeTurn ();
         }
     }
 
