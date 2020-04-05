@@ -1,5 +1,3 @@
-import java.util.HashMap;
-import java.util.HashSet;
 
 public class GameHandler
 {
@@ -185,6 +183,7 @@ public class GameHandler
         }
         return counter;
     }
+
     public void showMap ()
     {
         System.out.println ("\n\n\n");
