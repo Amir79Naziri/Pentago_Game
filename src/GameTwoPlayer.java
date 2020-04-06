@@ -16,7 +16,7 @@ public class GameTwoPlayer extends Game
             boolean result = getGameHandler ().chooseTaw (reader.readFirstLine ());
             if (!result)
                 continue;
-            if (stopPlay ())
+            if (!stopPlay ())
                 return;
             getGameHandler ().showMap (true);
             String[] splits = reader.readSecLine ();

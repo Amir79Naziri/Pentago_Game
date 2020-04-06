@@ -17,7 +17,7 @@ public class GameHandler
     private void makeAllBlocks ()
     {
         for (int i = 0; i < 4; i++)
-            blocks[i] = new Block (i + 1);
+            blocks[i] = new Block ();
     }
 
 
@@ -183,7 +183,6 @@ public class GameHandler
         }
         return counter;
     }
-
 
 
     public void showMap (boolean showTurn)

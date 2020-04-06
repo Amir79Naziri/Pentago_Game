@@ -1,13 +1,11 @@
 public class Block
 {
-    private Taw[][] taws;
-    private int blockNumber;
+    private Taw[][] taw;
 
 
-    public Block (int blockNumber)
+    public Block ()
     {
-        taws = new Taw[3][3];
-        this.blockNumber = blockNumber;
+        taw = new Taw[3][3];
         makeAllTaw ();
     }
 
@@ -15,16 +13,13 @@ public class Block
     {
         for (int y = 0; y < 3; y++)
             for (int x = 0; x < 3; x++)
-                taws[y][x] = new Taw ();
+                taw[y][x] = new Taw ();
     }
 
 
-    public int getBlockNumber () {
-        return blockNumber;
-    }
 
     public Taw[][] getTaws () {
-        return taws;
+        return taw;
     }
 
 
@@ -32,20 +27,20 @@ public class Block
     {
         if (!(validChosenTaw (taw)))
             return false;
-        taws[taw.getY ()][taw.getX ()].setColor (color);
+        this.taw[taw.getY ()][taw.getX ()].setColor (color);
         return true;
     }
 
     private boolean validChosenTaw (Coordinate taw)
     {
-        return taws[taw.getY ()][taw.getX ()].getColor ().equals ("white");
+        return this.taw[taw.getY ()][taw.getX ()].getColor ().equals ("white");
     }
 
     public boolean isBlockEmpty ()
     {
         for (int y = 0; y < 3; y++)
             for (int x = 0; x < 3; x++)
-                if (!(taws[y][x].getColor ().equals ("white")))
+                if (!(taw[y][x].getColor ().equals ("white")))
                     return false;
         return true;
     }
@@ -55,9 +50,9 @@ public class Block
         transposedColor ();
         for (int i = 0; i < 3; i++)
         {
-            String color = taws[i][0].getColor ();
-            taws[i][0].setColor (taws[i][2].getColor ());
-            taws[i][2].setColor (color);
+            String color = taw[i][0].getColor ();
+            taw[i][0].setColor (taw[i][2].getColor ());
+            taw[i][2].setColor (color);
         }
     }
 
@@ -66,9 +61,9 @@ public class Block
         transposedColor ();
         for (int i = 0; i < 3; i++)
         {
-            String color = taws[0][i].getColor ();
-            taws[0][i].setColor (taws[2][i].getColor ());
-            taws[2][i].setColor (color);
+            String color = taw[0][i].getColor ();
+            taw[0][i].setColor (taw[2][i].getColor ());
+            taw[2][i].setColor (color);
         }
     }
 
@@ -77,9 +72,9 @@ public class Block
         for (int i = 0; i < 3; i++)
             for (int j = i; j < 3; j++)
             {
-                String color = taws[i][j].getColor ();
-                taws[i][j].setColor (taws[j][i].getColor ());
-                taws[j][i].setColor (color);
+                String color = taw[i][j].getColor ();
+                taw[i][j].setColor (taw[j][i].getColor ());
+                taw[j][i].setColor (color);
             }
     }
 }
