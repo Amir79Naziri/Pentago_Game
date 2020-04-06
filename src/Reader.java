@@ -1,32 +1,24 @@
 import java.util.Scanner;
 
-/**
- * this class is for reading from console
- *
- * @author Amir Naziri
- * @version 1.0
- */
 public class Reader
 {
     private Scanner line;
 
 
-    /**
-     * creates a new Reader instance
-     */
+
     public Reader ()
     {
         line = new Scanner (System.in);
     }
 
 
+
     public Coordinate readFirstLine ()
     {
         System.out.println ("Enter Chosen Taw in format : x y");
         String firstLine = line.nextLine ();
-        Coordinate coordinate = new Coordinate ();
-        if (coordinate.translator (firstLine))
-            return coordinate;
+        if (validLine (firstLine,1))
+            return new Coordinate (firstLine);
         else
             return readFirstLine ();
     }
@@ -35,23 +27,41 @@ public class Reader
     {
         System.out.println ("Enter Chosen Block and it's direction in format : blockNumber cw/ccw");
         String secondLine = line.nextLine ();
-        if (validSecLine (secondLine))
+        if (validLine (secondLine,2))
             return secondLine.trim ().split (" ");
         else
             return readSecLine ();
     }
 
-    private boolean validSecLine (String secondLine)
+    private boolean validLine (String inputLine, int type)
     {
-        String[] splits = secondLine.trim ().split (" ");
-        if (splits.length != 2)
+        if (inputLine != null)
+        {
+            String[] splits = inputLine.trim ().split (" ");
+            if (splits.length != 2)
+                return false;
+
+            if (type == 1)
+            {
+                if (!(splits[0].equals ("0")) && !(splits[0].equals ("1")) &&
+                        !(splits[0].equals ("2")) && !splits[0].equals ("3") &&
+                        !splits[0].equals ("4") && !splits[0].equals ("5"))
+                    return false;
+                return  splits[1].equals ("0") || splits[1].equals ("1") ||
+                        splits[1].equals ("2") || splits[1].equals ("3") ||
+                        splits[1].equals ("4") || splits[1].equals ("5");
+            }
+            else
+            {
+                if (!(splits[0].equals ("1")) && !(splits[0].equals ("2")) &&
+                        !(splits[0].equals ("3")) && (!splits[0].equals ("4")))
+                    return false;
+                return splits[1].equals ("cw") || splits[1].equals ("ccw");
+            }
+
+        }
+        else
             return false;
-        if (!(splits[0].equals ("1")) && !(splits[0].equals ("2")) && !(splits[0].equals ("3")) &&
-                (!splits[0].equals ("4")))
-            return false;
-        return splits[1].equals ("cw") || splits[1].equals ("ccw");
     }
-
-
 }
 

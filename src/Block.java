@@ -18,7 +18,7 @@ public class Block
 
 
 
-    public Taw[][] getTaws () {
+    public Taw[][] getTaw () {
         return taw;
     }
 
@@ -33,7 +33,12 @@ public class Block
 
     private boolean validChosenTaw (Coordinate taw)
     {
-        return this.taw[taw.getY ()][taw.getX ()].getColor ().equals ("white");
+        if (taw != null)
+        {
+            return this.taw[taw.getY ()][taw.getX ()].getColor ().equals ("white");
+        }
+        else
+            return false;
     }
 
     public boolean isBlockEmpty ()

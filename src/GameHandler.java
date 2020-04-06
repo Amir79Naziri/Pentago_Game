@@ -32,7 +32,6 @@ public class GameHandler
         }
     }
 
-
     public boolean chooseTaw (Coordinate taw)
     {
         String color;
@@ -50,14 +49,13 @@ public class GameHandler
         for (int y = 0; y < 6; y++)
             for (int x = 0; x < 6; x++)
             {
-                Coordinate coordinate = new Coordinate ();
-                coordinate.translator (x,y);
+                Coordinate coordinate = new Coordinate (x,y);
                 if (blocks[coordinate.getBlockNumber () - 1].
-                        getTaws ()[coordinate.getY ()][coordinate.getX ()].
+                        getTaw ()[coordinate.getY ()][coordinate.getX ()].
                         getColor ().equals (player1.getTawColor ()) && checkForATaw (coordinate))
                     playerOneWon = true;
                 if (blocks[coordinate.getBlockNumber () - 1].
-                        getTaws ()[coordinate.getY ()][coordinate.getX ()].
+                        getTaw ()[coordinate.getY ()][coordinate.getX ()].
                         getColor ().equals (player2.getTawColor ()) && checkForATaw (coordinate))
                     playerTwoWon = true;
             }
@@ -73,115 +71,123 @@ public class GameHandler
 
     private boolean checkForATaw (Coordinate taw)
     {
-        int x = taw.getMainX ();
-        int y = taw.getMainY ();
-        String color = blocks[taw.getBlockNumber () - 1].
-                getTaws ()[taw.getY ()][taw.getX ()].getColor ();
-        Coordinate coordinate = new Coordinate ();
-        if (x - 1 >= 0 && y - 1 >= 0)
+        if (taw != null)
         {
-            coordinate.translator (x - 1,y - 1);
-            if (blocks[coordinate.getBlockNumber ()  -1].
-                    getTaws ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
-                if (checkInDir (color,taw,1) >= 5)
-                    return true;
-        }
-        if ( y - 1 >= 0 )
-        {
-            coordinate.translator (x,y - 1);
-            if (blocks[coordinate.getBlockNumber ()  -1].
-                    getTaws ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
-                if (checkInDir (color,taw,2) >= 5)
-                    return true;
-        }
-        if (y - 1 >= 0 && x + 1 < 6)
-        {
-            coordinate.translator (x + 1,y - 1);
-            if (blocks[coordinate.getBlockNumber ()  -1].
-                    getTaws ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
-                if (checkInDir (color,taw,3) >= 5)
-                    return true;
-        }
-        if ( x - 1 >= 0)
-        {
-            coordinate.translator (x - 1,y);
-            if (blocks[coordinate.getBlockNumber ()  -1].
-                    getTaws ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
-                if (checkInDir (color,taw,4) >= 5)
-                    return true;
-        }
-        if (x + 1 < 6)
-        {
-            coordinate.translator (x + 1,y);
-            if (blocks[coordinate.getBlockNumber ()  -1].
-                    getTaws ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
-                if (checkInDir (color,taw,5) >= 5)
-                    return true;
-        }
-        if (y + 1 < 6 )
-        {
-            coordinate.translator (x,y + 1);
-            if (blocks[coordinate.getBlockNumber ()  -1].
-                    getTaws ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
-                if (checkInDir (color,taw,6) >= 5)
-                    return true;
-        }
-        if (y + 1 < 6 )
-        {
-            coordinate.translator (x,y + 1);
-            if (blocks[coordinate.getBlockNumber ()  -1].
-                    getTaws ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
-                if (checkInDir (color,taw,7) >= 5)
-                    return true;
-        }
-        if (y + 1 < 6 && x + 1 < 6 )
-        {
-            coordinate.translator (x + 1,y + 1);
-            if (blocks[coordinate.getBlockNumber ()  -1].
-                    getTaws ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
-                return checkInDir (color, taw, 8) >= 5;
+            int x = taw.getMainX ();
+            int y = taw.getMainY ();
+            String color = blocks[taw.getBlockNumber () - 1].
+                    getTaw ()[taw.getY ()][taw.getX ()].getColor ();
+
+            if (x - 1 >= 0 && y - 1 >= 0) {
+                Coordinate coordinate = new Coordinate (x - 1, y - 1);
+                if (blocks[coordinate.getBlockNumber () - 1].
+                        getTaw ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
+                    if (checkInDir (color, taw, 1) >= 5)
+                        return true;
+            }
+            if (y - 1 >= 0) {
+                Coordinate coordinate = new Coordinate (x, y - 1);
+                if (blocks[coordinate.getBlockNumber () - 1].
+                        getTaw ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
+                    if (checkInDir (color, taw, 2) >= 5)
+                        return true;
+            }
+            if (y - 1 >= 0 && x + 1 < 6) {
+                Coordinate coordinate = new Coordinate (x + 1, y - 1);
+                if (blocks[coordinate.getBlockNumber () - 1].
+                        getTaw ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
+                    if (checkInDir (color, taw, 3) >= 5)
+                        return true;
+            }
+            if (x - 1 >= 0) {
+                Coordinate coordinate = new Coordinate (x - 1, y);
+                if (blocks[coordinate.getBlockNumber () - 1].
+                        getTaw ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
+                    if (checkInDir (color, taw, 4) >= 5)
+                        return true;
+            }
+            if (x + 1 < 6) {
+                Coordinate coordinate = new Coordinate (x + 1, y);
+                if (blocks[coordinate.getBlockNumber () - 1].
+                        getTaw ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
+                    if (checkInDir (color, taw, 5) >= 5)
+                        return true;
+            }
+            if (y + 1 < 6) {
+                Coordinate coordinate = new Coordinate (x, y + 1);
+                if (blocks[coordinate.getBlockNumber () - 1].
+                        getTaw ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
+                    if (checkInDir (color, taw, 6) >= 5)
+                        return true;
+            }
+            if (y + 1 < 6) {
+                Coordinate coordinate = new Coordinate (x, y + 1);
+                if (blocks[coordinate.getBlockNumber () - 1].
+                        getTaw ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
+                    if (checkInDir (color, taw, 7) >= 5)
+                        return true;
+            }
+            if (y + 1 < 6 && x + 1 < 6) {
+                Coordinate coordinate = new Coordinate (x + 1, y + 1);
+                if (blocks[coordinate.getBlockNumber () - 1].
+                        getTaw ()[coordinate.getY ()][coordinate.getX ()].getColor ().equals (color))
+                    return checkInDir (color, taw, 8) >= 5;
+            }
         }
         return false;
     }
 
     private int checkInDir (String color, Coordinate taw,int dir)
     {
-
-        int x = taw.getMainX ();
-        int y = taw.getMainY ();
-
-        int counter = 0;
-        while (x >= 0 && x <= 5 && y >= 0 && y <= 5)
+        if (color != null && taw != null)
         {
-            Coordinate coordinate = new Coordinate ();
-            coordinate.translator (x,y);
-            if (!(blocks[coordinate.getBlockNumber () - 1].
-                    getTaws ()[coordinate.getY ()][coordinate.getX ()]).getColor ().equals (color))
-                return counter;
-            else
-                counter++;
+            int x = taw.getMainX ();
+            int y = taw.getMainY ();
 
-            switch (dir)
-            {
-                case 1 : x--; y--;
-                    break;
-                case 2 : y--;
-                    break;
-                case 3 : x++; y--;
-                    break;
-                case 4 : x--;
-                    break;
-                case 5 : x++;
-                    break;
-                case 6 : x--; y++;
-                    break;
-                case 7 : y++;
-                    break;
-                case 8 : x++; y++;
-                    break;
+            int counter = 0;
+            while (x >= 0 && x <= 5 && y >= 0 && y <= 5) {
+                Coordinate coordinate = new Coordinate (x, y);
+                if (!(blocks[coordinate.getBlockNumber () - 1].
+                        getTaw ()[coordinate.getY ()][coordinate.getX ()]).
+                        getColor ().equals (color))
+                    return counter;
+                else
+                    counter++;
+
+                switch (dir) {
+                    case 1:
+                        x--;
+                        y--;
+                        break;
+                    case 2:
+                        y--;
+                        break;
+                    case 3:
+                        x++;
+                        y--;
+                        break;
+                    case 4:
+                        x--;
+                        break;
+                    case 5:
+                        x++;
+                        break;
+                    case 6:
+                        x--;
+                        y++;
+                        break;
+                    case 7:
+                        y++;
+                        break;
+                    case 8:
+                        x++;
+                        y++;
+                        break;
+                }
             }
+            return counter;
         }
-        return counter;
+        else return 0;
     }
 
 
@@ -190,19 +196,20 @@ public class GameHandler
         System.out.println ("\n\n\n\n");
         for (int y = 0; y < 6; y++)
         {
-            if (y == 3)
-                System.out.println ("-----------------------------------------\n");
+
             for (int x = 0; x < 6; x++)
             {
                 if (x == 3)
-                    System.out.print (" |  ");
-                Coordinate taw = new Coordinate ();
-                if (taw.translator (x,y))
-                    blocks[taw.getBlockNumber () - 1].
-                            getTaws ()[taw.getY ()][taw.getX ()].printTaw ();
+                    System.out.print ("| ");
+                Coordinate taw = new Coordinate (x,y);
+                blocks[taw.getBlockNumber () - 1].
+                            getTaw ()[taw.getY ()][taw.getX ()].printTaw ();
                 System.out.print (" ");
             }
-            System.out.println ("\n");
+            if (y == 2)
+                System.out.println ("\n----------------------------------------");
+            else
+                 System.out.println ("\n");
         }
         System.out.println ("\n");
         if (showTurn)
@@ -214,6 +221,7 @@ public class GameHandler
         }
         else
             System.out.println ();
+        System.out.println ();
 
     }
 

@@ -48,23 +48,6 @@ public class RandomGame
         }
     }
 
-    /**
-     * this method is for one player game and choose a player randomly for machine
-     * @param player1 player1
-     * @param player2 player2
-     */
-    private void randomMachine (Player player1, Player player2)
-    {
-        if (randomMaker () == 1) {
-            player1.changeToMachine ();
-            player2.makeTurn ();
-        }
-        else
-        {
-            player2.changeToMachine ();
-            player1.makeTurn ();
-        }
-    }
 
     /**
      * this method is for two player game and gives a random color and turn to player
@@ -75,17 +58,5 @@ public class RandomGame
     {
         randomColor (player1,player2);
         randomStarter (player1,player2);
-    }
-
-    /**
-     * this method is for one player game and gives a random color to palyers
-     * and sets a player for machine
-     * @param player1 player1
-     * @param player2 player2
-     */
-    public void startRandomGameWithMachine (Player player1 ,Player player2)
-    {
-        randomColor (player1,player2);
-        randomMachine (player1,player2);
     }
 }

@@ -9,7 +9,6 @@ public class Player
     private boolean turn; // is turn
     private String tawColor; // taw color
     private int points; // points
-    boolean isMachine; // is machine player
 
 
     /**
@@ -20,7 +19,6 @@ public class Player
         this.tawColor = "non-color";
         turn = false;
         points = 0;
-        isMachine = false;
     }
 
 
@@ -79,20 +77,7 @@ public class Player
         return points;
     }
 
-    /**
-     * @return is player Machine
-     */
-    public boolean isMachine () {
-        return isMachine;
-    }
 
-    /**
-     * make player a Machine
-     */
-    public void changeToMachine ()
-    {
-        isMachine = true;
-    }
 
     public void printPlayerColor ()
     {

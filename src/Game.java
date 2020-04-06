@@ -40,7 +40,7 @@ public abstract class Game
             case 0 : return true;
             case 1 :
                 getGameHandler ().showMap (false);
-                System.out.println ("Player1 won");
+                System.out.println ("player1 won");
                 return false;
             case 2 :
                 getGameHandler ().showMap (false);
