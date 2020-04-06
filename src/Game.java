@@ -1,77 +1,75 @@
 public abstract class Game
 {
-    private Player player1;
-    private Player player2;
-    private GameHandler gameHandler;
-
+    private GameBase gameBase;
+    private UserInterface userInterface;
 
     public Game ()
     {
-        player1 = new Player ();
-        player2 = new Player ();
+        gameBase = new GameBase ();
+        userInterface = new UserInterface ();
         startPlay ();
-        gameHandler = new GameHandler (player1,player2);
     }
 
-    public Player getPlayer1 () {
-        return player1;
+    public GameBase getGameBase () {
+        return gameBase;
     }
 
-    public Player getPlayer2 () {
-        return player2;
+    public UserInterface getUserInterface () {
+        return userInterface;
     }
-
-    public GameHandler getGameHandler () {
-        return gameHandler;
-    }
-
 
     private void startPlay ()
     {
         RandomGame randomGame = new RandomGame ();
-        randomGame.startRandomGame (player1, player2);
+        randomGame.startRandomGame (gameBase.getPlayer1 (), gameBase.getPlayer2 ());
     }
 
     public boolean stopPlay ()
     {
-        int result = gameHandler.checksForFinish ();
+        int result = gameBase.checksForFinish ();
         switch (result)
         {
             case 0 : return true;
             case 1 :
-                getGameHandler ().showMap (false);
-                System.out.println ("player1 won");
+                userInterface.showMap (false,getGameBase ().getBlocks (),
+                        getGameBase ().getPlayer1 (),getGameBase ().getPlayer2 ());
+                getUserInterface ().printTawForTurn (getGameBase ().getPlayer1 ().getTawColor (),
+                        "won");
                 return false;
             case 2 :
-                getGameHandler ().showMap (false);
-                System.out.println ("Player2 won");
+                userInterface.showMap (false,getGameBase ().getBlocks (),
+                        getGameBase ().getPlayer1 (),getGameBase ().getPlayer2 ());
+                getUserInterface ().printTawForTurn (getGameBase ().getPlayer2 ().getTawColor (),
+                        "won");
                 return false;
             case 3 :
-                getGameHandler ().showMap (false);
+                userInterface.showMap (false,getGameBase ().getBlocks (),
+                        getGameBase ().getPlayer1 (),getGameBase ().getPlayer2 ());
                 System.out.println ("Draw");
                 return false;
         }
 
-        if (player1.getPoints () + player2.getPoints () == 36)
+        if (gameBase.getPlayer1 ().getPoints () + gameBase.getPlayer2 ().getPoints () == 36)
         {
-            getGameHandler ().showMap (false);
+            userInterface.showMap (false,getGameBase ().getBlocks (),
+                    getGameBase ().getPlayer1 (),getGameBase ().getPlayer2 ());
             System.out.println ("Draw");
             return false;
         }
         return true;
     }
 
-    protected void changeTurn ()
+    public void changeTurn ()
     {
-        if (getPlayer1 ().isTurn ())
+        if (gameBase.getPlayer1 ().isTurn ())
         {
-            getPlayer1 ().doneTurn ();
-            getPlayer2 ().makeTurn ();
+            gameBase.getPlayer1 ().doneTurn ();
+            gameBase.getPlayer2 ().makeTurn ();
         }
         else
         {
-            getPlayer2 ().doneTurn ();
-            getPlayer1 ().makeTurn ();
+            gameBase.getPlayer2 ().doneTurn ();
+            gameBase.getPlayer1 ().makeTurn ();
         }
     }
 

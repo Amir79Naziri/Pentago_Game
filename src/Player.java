@@ -61,14 +61,6 @@ public class Player
         this.turn = true;
     }
 
-    /**
-     * sets point
-     * @param points input point
-     */
-    public void setPoints (int points)
-    {
-        this.points = points;
-    }
 
     /**
      * @return points of Player
@@ -78,12 +70,4 @@ public class Player
     }
 
 
-
-    public void printPlayerColor ()
-    {
-        if (this.getTawColor ().equals ("black"))
-            System.out.println ("  " + '\u26AA' + " turn");
-        if (this.getTawColor ().equals ("red"))
-            System.out.println ("  " + "\u001B[31m" + '\u26AB' + "\u001B[0m" + " turn");
-    }
 }

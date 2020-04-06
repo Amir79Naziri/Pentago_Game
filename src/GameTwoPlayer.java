@@ -1,7 +1,6 @@
 public class GameTwoPlayer extends Game
 {
 
-
     public GameTwoPlayer ()
     {
         super();
@@ -12,15 +11,17 @@ public class GameTwoPlayer extends Game
         Reader reader = new Reader ();
         while (stopPlay ())
         {
-            getGameHandler ().showMap (true);
-            boolean result = getGameHandler ().chooseTaw (reader.readFirstLine ());
+            getUserInterface ().showMap (true,getGameBase ().getBlocks (),
+                    getGameBase ().getPlayer1 (),getGameBase ().getPlayer2 ());
+            boolean result = getGameBase ().chooseTaw (reader.readFirstLine ());
             if (!result)
                 continue;
             if (!stopPlay ())
                 return;
-            getGameHandler ().showMap (true);
+            getUserInterface ().showMap (true,getGameBase ().getBlocks (),
+                    getGameBase ().getPlayer1 (),getGameBase ().getPlayer2 ());
             String[] splits = reader.readSecLine ();
-            getGameHandler ().rotate (Integer.parseInt (splits[0]),splits[1]);
+            getGameBase ().rotate (Integer.parseInt (splits[0]),splits[1]);
             changeTurn ();
         }
     }

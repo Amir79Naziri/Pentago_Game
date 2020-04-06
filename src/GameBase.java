@@ -1,18 +1,29 @@
-
-public class GameHandler
+public class GameBase
 {
     private Player player1;
     private Player player2;
     private Block[] blocks;
 
-    public GameHandler (Player player1, Player player2)
+    public GameBase ()
     {
-        this.player1 = player1;
-        this.player2 = player2;
+        this.player1 = new Player ();
+        this.player2 = new Player ();
         blocks = new Block[4];
         makeAllBlocks ();
     }
 
+
+    public Player getPlayer1 () {
+        return player1;
+    }
+
+    public Player getPlayer2 () {
+        return player2;
+    }
+
+    public Block[] getBlocks () {
+        return blocks;
+    }
 
     private void makeAllBlocks ()
     {
@@ -190,39 +201,5 @@ public class GameHandler
         else return 0;
     }
 
-
-    public void showMap (boolean showTurn)
-    {
-        System.out.println ("\n\n\n\n");
-        for (int y = 0; y < 6; y++)
-        {
-
-            for (int x = 0; x < 6; x++)
-            {
-                if (x == 3)
-                    System.out.print ("| ");
-                Coordinate taw = new Coordinate (x,y);
-                blocks[taw.getBlockNumber () - 1].
-                            getTaw ()[taw.getY ()][taw.getX ()].printTaw ();
-                System.out.print (" ");
-            }
-            if (y == 2)
-                System.out.println ("\n----------------------------------------");
-            else
-                 System.out.println ("\n");
-        }
-        System.out.println ("\n");
-        if (showTurn)
-        {
-            if (player1.isTurn ())
-                player1.printPlayerColor ();
-            else
-                player2.printPlayerColor ();
-        }
-        else
-            System.out.println ();
-        System.out.println ();
-
-    }
 
 }

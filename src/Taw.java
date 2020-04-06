@@ -21,17 +21,6 @@ public class Taw
     }
 
 
-    public void printTaw ()
-    {
-        if (getColor ().equals ("white"))
-            System.out.print ("  " + '\u26AB' + "  ");
-        if (getColor ().equals ("black"))
-            System.out.print ("  " + '\u26AA' + "  ");
-        if (getColor ().equals ("red"))
-            System.out.print ("  " + "\u001B[31m" + '\u26AB' + "\u001B[0m" + "  ");
-
-    }
-
 
 
 
