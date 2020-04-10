@@ -206,8 +206,8 @@ public class GameBase
             while (x >= 0 && x <= 5 && y >= 0 && y <= 5) {
                 Coordinate coordinate = new Coordinate (x, y);
                 if (!(blocks[coordinate.getBlockNumber () - 1].
-                        getTaw ()[coordinate.getY ()][coordinate.getX ()]).
-                        getColor ().equals (color))
+                        getTaw ()[coordinate.getY ()][coordinate.getX ()].
+                        getColor ().equals (color)))
                     return counter;
                 else
                     counter++;
