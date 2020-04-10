@@ -1,7 +1,18 @@
-public class UserInterface
+/**
+ * this class represent user interface of game
+ *
+ * @author Amir Naziri
+ */
+public class Printer
 {
 
-
+    /**
+     * show map
+     * @param showTurn show turn under map ?
+     * @param blocks blocks
+     * @param player1 player1
+     * @param player2 player2
+     */
     public void showMap (boolean showTurn, Block[] blocks, Player player1, Player player2 )
     {
         System.out.println ("\n\n\n\n");
@@ -36,6 +47,10 @@ public class UserInterface
     }
 
 
+    /**
+     * print a Taw
+     * @param taw Taw
+     */
     private void printTaw (Taw taw)
     {
         if (taw == null)
@@ -48,6 +63,11 @@ public class UserInterface
             System.out.print ("  " + "\u001B[31m" + '\u26AB' + "\u001B[0m" + "  ");
     }
 
+    /**
+     * prints String in form (printTawForPlayerInTurn) + "what"
+     * @param color color of player's Taw who is in Turn
+     * @param what what to print after printing Taw like "Won" or "Turn" or ,....
+     */
     public void printTawForTurn (String color, String what)
     {
         if (color == null)

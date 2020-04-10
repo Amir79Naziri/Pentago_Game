@@ -2,7 +2,6 @@
  * this class represents a Player
  *
  * @author Amir Naziri
- * @version 1.0
  */
 public class Player
 {
@@ -68,6 +67,5 @@ public class Player
     public int getPoints () {
         return points;
     }
-
 
 }

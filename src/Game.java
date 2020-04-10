@@ -1,29 +1,52 @@
+/**
+ * this class represents a new Game with start and stop game , play game , ... methods
+ *
+ * @author Amir Naziri
+ */
 public abstract class Game
 {
-    private GameBase gameBase;
-    private UserInterface userInterface;
+    private GameBase gameBase; // game base
+    private Printer printer; // painter
 
+
+    /**
+     * creates a new game
+     */
     public Game ()
     {
         gameBase = new GameBase ();
-        userInterface = new UserInterface ();
+        printer = new Printer ();
         startPlay ();
     }
 
+
+    /**
+     * @return game base
+     */
     public GameBase getGameBase () {
         return gameBase;
     }
 
-    public UserInterface getUserInterface () {
-        return userInterface;
+    /**
+     * @return printer
+     */
+    public Printer getPrinter () {
+        return printer;
     }
 
+    /**
+     * starts game
+     */
     private void startPlay ()
     {
         RandomGame randomGame = new RandomGame ();
         randomGame.startRandomGame (gameBase.getPlayer1 (), gameBase.getPlayer2 ());
     }
 
+    /**
+     * checks the condition for stop game
+     * @return can game continue
+     */
     public boolean stopPlay ()
     {
         int result = gameBase.checksForFinish ();
@@ -31,19 +54,19 @@ public abstract class Game
         {
             case 0 : return true;
             case 1 :
-                userInterface.showMap (false,getGameBase ().getBlocks (),
+                printer.showMap (false,getGameBase ().getBlocks (),
                         getGameBase ().getPlayer1 (),getGameBase ().getPlayer2 ());
-                getUserInterface ().printTawForTurn (getGameBase ().getPlayer1 ().getTawColor (),
+                getPrinter ().printTawForTurn (getGameBase ().getPlayer1 ().getTawColor (),
                         "won");
                 return false;
             case 2 :
-                userInterface.showMap (false,getGameBase ().getBlocks (),
+                printer.showMap (false,getGameBase ().getBlocks (),
                         getGameBase ().getPlayer1 (),getGameBase ().getPlayer2 ());
-                getUserInterface ().printTawForTurn (getGameBase ().getPlayer2 ().getTawColor (),
+                getPrinter ().printTawForTurn (getGameBase ().getPlayer2 ().getTawColor (),
                         "won");
                 return false;
             case 3 :
-                userInterface.showMap (false,getGameBase ().getBlocks (),
+                printer.showMap (false,getGameBase ().getBlocks (),
                         getGameBase ().getPlayer1 (),getGameBase ().getPlayer2 ());
                 System.out.println ("Draw");
                 return false;
@@ -51,7 +74,7 @@ public abstract class Game
 
         if (gameBase.getPlayer1 ().getPoints () + gameBase.getPlayer2 ().getPoints () == 36)
         {
-            userInterface.showMap (false,getGameBase ().getBlocks (),
+            printer.showMap (false,getGameBase ().getBlocks (),
                     getGameBase ().getPlayer1 (),getGameBase ().getPlayer2 ());
             System.out.println ("Draw");
             return false;
@@ -59,6 +82,9 @@ public abstract class Game
         return true;
     }
 
+    /**
+     * change turn
+     */
     public void changeTurn ()
     {
         if (gameBase.getPlayer1 ().isTurn ())
@@ -73,5 +99,8 @@ public abstract class Game
         }
     }
 
+    /**
+     * play a game
+     */
     abstract public void play ();
 }

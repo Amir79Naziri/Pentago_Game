@@ -4,7 +4,6 @@ import java.util.Random;
  * this class bring random start for Game
  *
  * @author Amir Naziri
- * @version 1.0
  */
 public class RandomGame
 {

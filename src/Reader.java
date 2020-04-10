@@ -1,18 +1,28 @@
 import java.util.Scanner;
 
+/**
+ * this class is for reading input by user
+ *
+ * @author Amir Naziri
+ */
 public class Reader
 {
-    private Scanner line;
+    private Scanner line; // line
 
 
-
+    /**
+     * creates a new Reader instance
+     */
     public Reader ()
     {
         line = new Scanner (System.in);
     }
 
 
-
+    /**
+     * read first command for choosing a Taw
+     * @return translate of command to Coordinate
+     */
     public Coordinate readFirstLine ()
     {
         System.out.println ("Enter Chosen Taw in format : x y");
@@ -23,6 +33,10 @@ public class Reader
             return readFirstLine ();
     }
 
+    /**
+     * read second command for choosing a Block for rotate
+     * @return translate of command to Coordinate
+     */
     public String[] readSecLine ()
     {
         System.out.println ("Enter Chosen Block and it's direction in format : blockNumber cw/ccw");
@@ -33,6 +47,12 @@ public class Reader
             return readSecLine ();
     }
 
+    /**
+     * checks if command is in valid format or not
+     * @param inputLine input Line (command)
+     * @param type type 1 is for first line and type 2 is for second line
+     * @return valid or not
+     */
     private boolean validLine (String inputLine, int type)
     {
         if (inputLine != null)

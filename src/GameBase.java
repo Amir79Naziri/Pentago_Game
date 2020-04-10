@@ -1,9 +1,18 @@
+/**
+ * this class is the central management for game and implements rules of game
+ *
+ * @author Amir Naziri
+ */
 public class GameBase
 {
-    private Player player1;
-    private Player player2;
-    private Block[] blocks;
+    private Player player1; // player1
+    private Player player2; // player2
+    private Block[] blocks; // list of blocks
 
+
+    /**
+     * creates a new instance of gameBase
+     */
     public GameBase ()
     {
         this.player1 = new Player ();
@@ -13,25 +22,41 @@ public class GameBase
     }
 
 
+    /**
+     * @return player1
+     */
     public Player getPlayer1 () {
         return player1;
     }
 
+    /**
+     * @return player2
+     */
     public Player getPlayer2 () {
         return player2;
     }
 
+    /**
+     * @return list of blocks
+     */
     public Block[] getBlocks () {
         return blocks;
     }
 
+    /**
+     * creates all four block
+     */
     private void makeAllBlocks ()
     {
         for (int i = 0; i < 4; i++)
             blocks[i] = new Block ();
     }
 
-
+    /**
+     * rotate act
+     * @param blockNumber blockNumber
+     * @param dir cw or ccw
+     */
     public void rotate (int blockNumber, String dir) // dir : ccw or cw
     {
         if (!(blocks[blockNumber - 1].isBlockEmpty ()))
@@ -43,6 +68,11 @@ public class GameBase
         }
     }
 
+    /**
+     * choose Taw act
+     * @param taw choosen Taw
+     * @return was it successful
+     */
     public boolean chooseTaw (Coordinate taw)
     {
         String color;
@@ -53,6 +83,11 @@ public class GameBase
         return blocks[taw.getBlockNumber () - 1].chooseTaw (taw,color);
     }
 
+    /**
+     * checks the rules for finishing game
+     * @return 1 means player1 won , 2 means player2 won , 0 means game should continue ,
+     3 means draw
+     */
     public int checksForFinish ()
     {
         boolean playerOneWon = false;
@@ -80,6 +115,11 @@ public class GameBase
             return 0;
     }
 
+    /**
+     * checking for finding five Taw in row or col or ...
+     * @param taw Taw
+     * @return is reached 5
+     */
     private boolean checkForATaw (Coordinate taw)
     {
         if (taw != null)
@@ -148,6 +188,13 @@ public class GameBase
         return false;
     }
 
+    /**
+     * checking for finding five Taw in row or col or ...
+     * @param color color of player in turn
+     * @param taw start Taw
+     * @param dir northwest , north , ...  : (1,2, .. . , 8)
+     * @return number of sequence
+     */
     private int checkInDir (String color, Coordinate taw,int dir)
     {
         if (color != null && taw != null)
@@ -200,6 +247,4 @@ public class GameBase
         }
         else return 0;
     }
-
-
 }

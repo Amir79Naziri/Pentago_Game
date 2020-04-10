@@ -1,14 +1,27 @@
+/**
+ * this class represents a block in game
+ * which has 9 taw in it.
+ *
+ * @author Amir Naziri
+ */
 public class Block
 {
-    private Taw[][] taw;
+    private Taw[][] taw;  // list of Taw in a block
 
 
+    /**
+     * creating a new Block
+     */
     public Block ()
     {
         taw = new Taw[3][3];
         makeAllTaw ();
     }
 
+
+    /**
+     * make all Taw in block
+     */
     private void  makeAllTaw ()
     {
         for (int y = 0; y < 3; y++)
@@ -16,13 +29,19 @@ public class Block
                 taw[y][x] = new Taw ();
     }
 
-
-
+    /**
+     * @return list of Taw
+     */
     public Taw[][] getTaw () {
         return taw;
     }
 
-
+    /**
+     * choosing a Taw in Block
+     * @param taw chosen Taw
+     * @param color color for new Taw
+     * @return was this choose successful or not
+     */
     public boolean chooseTaw (Coordinate taw , String color)
     {
         if (!(validChosenTaw (taw)))
@@ -31,6 +50,11 @@ public class Block
         return true;
     }
 
+    /**
+     * checks if choose valid ro not
+     * @param taw chosen Taw
+     * @return valid or not
+     */
     private boolean validChosenTaw (Coordinate taw)
     {
         if (taw != null)
@@ -41,6 +65,10 @@ public class Block
             return false;
     }
 
+    /**
+     * Is this block empty
+     * @return result of Is this block empty
+     */
     public boolean isBlockEmpty ()
     {
         for (int y = 0; y < 3; y++)
@@ -50,6 +78,9 @@ public class Block
         return true;
     }
 
+    /**
+     * rotate block clock Wise
+     */
     public void clockWiseChange ()
     {
         transposedColor ();
@@ -61,6 +92,9 @@ public class Block
         }
     }
 
+    /**
+     * rotate block counter clock Wise
+     */
     public void counterClockWiseChange ()
     {
         transposedColor ();
@@ -72,6 +106,9 @@ public class Block
         }
     }
 
+    /**
+     * transpose the matrix of Taw
+     */
     private void transposedColor ()
     {
         for (int i = 0; i < 3; i++)
