@@ -52,7 +52,7 @@ public abstract class Game
         int result = gameBase.checksForFinish ();
         switch (result)
         {
-            case 0 : return true;
+            case 0 : break;
             case 1 :
                 printer.showMap (false,getGameBase ().getBlocks (),
                         getGameBase ().getPlayer1 (),getGameBase ().getPlayer2 ());
