@@ -247,4 +247,22 @@ public class GameBase
         }
         else return 0;
     }
+
+    /**
+     * checks the map and if it was full return true
+     * @return if it was full return true
+     */
+    public boolean mapFull ()
+    {
+        for (int y = 0; y < 6; y++)
+            for (int x = 0; x < 6; x++)
+            {
+                Coordinate coordinate = new Coordinate (x,y);
+                if (blocks[coordinate.getBlockNumber () - 1].
+                        getTaw ()[coordinate.getY ()][coordinate.getX ()].getColor ().
+                        equals ("white"))
+                    return false;
+            }
+        return true;
+    }
 }

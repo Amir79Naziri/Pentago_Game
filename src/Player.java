@@ -7,7 +7,6 @@ public class Player
 {
     private boolean turn; // is turn
     private String tawColor; // taw color
-    private int points; // points
 
 
     /**
@@ -17,7 +16,6 @@ public class Player
     {
         this.tawColor = "non-color";
         turn = false;
-        points = 0;
     }
 
 
@@ -59,13 +57,4 @@ public class Player
     {
         this.turn = true;
     }
-
-
-    /**
-     * @return points of Player
-     */
-    public int getPoints () {
-        return points;
-    }
-
 }

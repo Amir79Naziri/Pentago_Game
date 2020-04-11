@@ -72,7 +72,7 @@ public abstract class Game
                 return false;
         }
 
-        if (gameBase.getPlayer1 ().getPoints () + gameBase.getPlayer2 ().getPoints () == 36)
+        if (getGameBase ().mapFull ())
         {
             printer.showMap (false,getGameBase ().getBlocks (),
                     getGameBase ().getPlayer1 (),getGameBase ().getPlayer2 ());
